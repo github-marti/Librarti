@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to the Librarti</title>
+</head>
+<body>
+    {% if latest_book_list %}
+    <ul>
+        {% for book in latest_book_list %}
+        <li><a href="/books/{{ book.id}}/">{{book.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>What's this? No books?!</p>
+{% endif %}
+</body>
+</html>
