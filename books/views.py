@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book
+from django.urls import reverse
+from django.views import generic
 
 # Create your views here.
-def index(request):
-    latest_book_list = Book.objects.order_by('-add_date')[:5]
-    context = {
-        'latest_book_list': latest_book_list
-    }
-    return render(request, 'books/index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'books/index.html'
+    context_object_name = 'latest_books_list'
 
-def detail(request, book_id):
-    book = get_object_or_404(Book, pk=book_id)
-    return render(request, 'books/detail.html', {'book': book})
+    def get_queryset(self):
+        """Return the last five books according to add date"""
+        return Book.objects.order_by('-add_date')[:5]
+
+class DetailView(generic.DetailView):
+    model = Book
+    template_name = 'books/detail.html'
