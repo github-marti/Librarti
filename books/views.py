@@ -17,7 +17,7 @@ class DetailView(generic.DetailView):
     model = Book
     template_name = 'books/detail.html'
 
-def add_synopsis(request, book_id):
+def update_synopsis(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     try:
         book.synopsis = request.POST['synopsis']

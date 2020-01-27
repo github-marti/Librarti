@@ -15,8 +15,8 @@
     {% else %}
     <div>
         <p>This book doesn't have a synopsis yet.</p>
-        <p>Add a symopsis?</p>
-        <form action="{% url 'books:add_synopsis' book.id %}" method="post">
+        <p>Add a synopsis?</p>
+        <form action="{% url 'books:update_synopsis' book.id %}" method="post">
             {% csrf_token %}
             <textarea id="synopsis" name="synopsis"></textarea>
             <br />
