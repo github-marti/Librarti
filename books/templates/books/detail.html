@@ -16,7 +16,7 @@
     <h3>{{ book.title }}</h3>
     <h4>by {{ book.author }}</h4>
 
-    <!-- Book Synopsis -->
+    <!-- Book Synopsis Section -->
     <p>Synopsis:</p>
     {% if book.synopsis %}
     <div id="current_synopsis">
@@ -45,6 +45,20 @@
     </div>
     {% endif %}
     <!-- End Book Synopsis Section -->
+
+    <!-- Book Review Section -->
+    <p>Review</p>
+    {% if book.review %}
+    <div id="current_review">
+        {{ book.review }}
+    </div>
+    {% else %}
+    <div>
+        <p>This book doesn't have a review yet.</p>
+    </div>
+    {% endif %}
+    <!-- End Book Review Section -->
+
 </body>
 
 <script>
