@@ -9,5 +9,22 @@
 <body>
     <h3>{{ book.title }}</h3>
     <h4>by {{ book.author }}</h4>
+    <p>Synopsis:</p>
+    {% if book.synopsis %}
+    <div>{{ book.synopsis }}</div>
+    {% else %}
+    <div>
+        <p>This book doesn't have a synopsis yet.</p>
+        <p>Add a symopsis?</p>
+        <form action="{% url 'books:add_synopsis' book.id %}" method="post">
+            {% csrf_token %}
+            <textarea id="synopsis" name="synopsis"></textarea>
+            <br />
+            <input type="submit" value="Add Synopsis">
+        </form>
+
+    </div>
+    {% endif %}
+    </div>
 </body>
 </html>
