@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "books/style.css" %}">
     <title>{{ book.title }}</title>
 </head>
+
 <body>
     <h3>{{ book.title }}</h3>
     <h4>by {{ book.author }}</h4>
     <p>Synopsis:</p>
     {% if book.synopsis %}
-    <div>{{ book.synopsis }}</div>
+    <div id="current_synopsis">
+        <div id="synopsis">{{ book.synopsis }}</div>
+        <button id="edit">Edit Synopsis</button>
+    </div>
+    <div id="edit_synopsis" style="display:none">
+        <form action="{% url 'books:update_synopsis' book.id %}" method="post">
+            {% csrf_token %}
+            <textarea id="new_synopsis" name="synopsis">{{ book.synopsis }}</textarea>
+            <br />
+            <input type="submit" value="Save">
+            <button id="cancel">Cancel</button>
+        </form>
+    </div>
     {% else %}
     <div>
         <p>This book doesn't have a synopsis yet.</p>
         <p>Add a synopsis?</p>
         <form action="{% url 'books:update_synopsis' book.id %}" method="post">
             {% csrf_token %}
-            <textarea id="synopsis" name="synopsis"></textarea>
+            <textarea id="new_synopsis" name="synopsis"></textarea>
             <br />
             <input type="submit" value="Add Synopsis">
         </form>
@@ -27,4 +45,25 @@
     {% endif %}
     </div>
 </body>
+
+<script>
+    const currentSynopsis = document.getElementById('current_synopsis');
+    const editSynopsis = document.getElementById('edit_synopsis');
+    const synopsisText = document.getElementById('synopsis').textContent;
+    const editButton = document.getElementById('edit');
+    const cancelButton = document.getElementById('cancel');
+
+    editButton.addEventListener('click', function () {
+        currentSynopsis.setAttribute('style', 'display:none');
+        editSynopsis.setAttribute('style', 'display:block');
+    });
+
+    cancelButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        currentSynopsis.setAttribute('style', 'display:block');
+        editSynopsis.setAttribute('style', 'display:none');
+    });
+
+</script>
+
 </html>
