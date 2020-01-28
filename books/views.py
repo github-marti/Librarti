@@ -17,16 +17,31 @@ class DetailView(generic.DetailView):
     model = Book
     template_name = 'books/detail.html'
 
-def update_synopsis(request, book_id):
+def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
-    try:
-        book.synopsis = request.POST['synopsis']
-    except (KeyError):
-        return render(request, 'books/detail.html', {
-            'book': book,
-            'error_message': "Data not successfully saved."
-        })
-    else:
-        print(book.synopsis)
-        book.save()
-        return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
+
+    # for synopsis updates
+    if column == 'synopsis':
+        try:
+            book.synopsis = request.POST[column]
+        except (KeyError):
+            return render(request, 'books/detail.html', {
+                'book': book,
+                'error_message': "Synopsis not successfully saved."
+            })
+        else:
+            book.save()
+            return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
+    
+    # for review updates
+    elif column == 'review':
+        try:
+            book.review = request.POST[column]
+        except (KeyError):
+            return render(request, 'books/detail.html', {
+                'book': book,
+                'error_message': "Review not successfully saved."
+            })
+        else:
+            book.save()
+            return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
