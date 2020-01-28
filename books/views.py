@@ -20,7 +20,9 @@ class DetailView(generic.DetailView):
 
 def new_book(request):
     form = BookForm()
-    return render(request, 'books/book_edit.html')
+    return render(request, 'books/book_edit.html', {
+        'form': form
+    })
 
 def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
