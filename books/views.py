@@ -58,19 +58,3 @@ def update_review(request, book_id):
             return redirect('books:detail', pk=review.book.pk)
     else:
         return render(request, 'books/book_edit.html', {'review_form': form})
-
-def update(request, book_id, column):
-    book = get_object_or_404(Book, pk=book_id)
-    review = get_object_or_404(Review, book=book_id)
-    
-    # for review updates
-    try:
-        review.stars = request.POST[column]
-    except (KeyError):
-        return render(request, 'books/detail.html', {
-            'book': book,
-            'error_message': "Review not successfully saved."
-        })
-    else:
-        review.save()
-        return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
