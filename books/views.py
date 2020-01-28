@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Book
+from .models import Book, Review
 from django.urls import reverse
 from django.views import generic
 
@@ -19,6 +19,8 @@ class DetailView(generic.DetailView):
 
 def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
+    review = get_object_or_404(Review, book=book_id)
+    print(review.stars)
 
     # for synopsis updates
     if column == 'synopsis':
@@ -36,12 +38,13 @@ def update(request, book_id, column):
     # for review updates
     elif column == 'review':
         try:
-            book.review = request.POST[column]
+            review.stars = request.POST[column]
+            print(request.POST[column])
         except (KeyError):
             return render(request, 'books/detail.html', {
                 'book': book,
                 'error_message': "Review not successfully saved."
             })
         else:
-            book.save()
+            review.save()
             return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))

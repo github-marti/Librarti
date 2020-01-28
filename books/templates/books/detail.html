@@ -19,6 +19,7 @@
     {% if error_message %}
     <p class="error">{{ error_message }}</p>
     {% endif %}
+
     <h3>{{ book.title }}</h3>
     <h4>by {{ book.author }}</h4>
 
@@ -56,13 +57,13 @@
     <p>Review</p>
     {% if book.review %}
     <div id="current_review">
-        <span id="review_stars">{{ book.review }}</span>
+        <span id="review_stars">{{ book.review.stars }}</span>
         <button class="toggle" section="review">Edit Review</button>
     </div>
     <div id="edit_review" style="display:none">
         <form action="{% url 'books:update' book.id 'review' %}" method="post">
             {% csrf_token %}
-            {% for stars, review in book.REVIEW_CHOICES %}
+            {% for stars, review in book.review.REVIEW_CHOICES %}
             <input type="radio" name="review" value="{{ stars }}">
             <label>{{ stars }}</label>
             {% endfor %}
@@ -75,7 +76,7 @@
         <p>This book doesn't have a review yet.</p>
         <form action="{% url 'books:update' book.id 'review' %}" method="post">
             {% csrf_token %}
-            {% for stars, review in book.REVIEW_CHOICES %}
+            {% for stars, review in book.review.REVIEW_CHOICES %}
             <input type="radio" name="review" value="{{ stars }}">
             <label>{{ stars }}</label>
             {% endfor %}
