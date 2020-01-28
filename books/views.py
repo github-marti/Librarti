@@ -3,10 +3,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Book, Review
+from .forms import BookForm
 
 # Create your views here.
 class IndexView(generic.ListView):
-    template_name = 'books/index.html'
+    template_name = 'books/book_view.html'
     context_object_name = 'latest_books_list'
 
     def get_queryset(self):
@@ -16,6 +17,10 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Book
     template_name = 'books/detail.html'
+
+def new_book(request):
+    form = BookForm()
+    return render(request, 'books/book_edit.html')
 
 def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
