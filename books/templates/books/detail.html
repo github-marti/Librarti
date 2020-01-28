@@ -22,6 +22,8 @@
 
     <h3>{{ book.title }}</h3>
     <h4>by {{ book.author }}</h4>
+
+    <!-- Synopsis Section -->
     <p>Synopsis:</p>
     {% if book.synopsis %}
     <div id="current_synopsis">
@@ -30,13 +32,6 @@
     {% else %}
     <div>
         <p>This book doesn't have a synopsis yet.</p>
-        <p>Add a synopsis?</p>
-        <form action="{% url 'books:update' book.id 'synopsis' %}" method="post">
-            {% csrf_token %}
-            <textarea id="new_synopsis" name="synopsis"></textarea>
-            <br />
-            <input type="submit" value="Add Synopsis">
-        </form>
     </div>
     {% endif %}
     <!-- End Book Synopsis Section -->
@@ -72,8 +67,9 @@
         </form>
     </div>
     {% endif %}
+    <a href="{% url 'books:index' %}">Back</a>
     <!-- End Book Review Section -->
-
+    <a href="{% url 'books:update_book' book.id %}">Update Book</a>
 </body>
 
 <script>

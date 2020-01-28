@@ -1,9 +1,0 @@
-{% extends 'books/edit_base.html' %}
-
-{% block review_edit %}
-    <h2>Review</h2>
-    <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-{% endblock %}
