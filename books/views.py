@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 from .models import Book, Review
 from .forms import BookForm, ReviewForm
 
@@ -19,8 +20,20 @@ class DetailView(generic.DetailView):
     template_name = 'books/detail.html'
 
 def new_book(request):
-    book_form = BookForm()
-    review_form = ReviewForm()
+    if request.method == 'POST':
+        book_form = BookForm(request.POST)
+        review_form = ReviewForm(request.POST)
+        if book_form.is_valid():
+            book = book_form.save(commit=False)
+            book.add_date = timezone.now()
+            book.save()
+            review = review_form.save(commit=False)
+            review.book = book
+            review.save()
+            return redirect('books:detail', pk = book.pk)       
+    else:
+        book_form = BookForm()
+        review_form = ReviewForm()
     return render(request, 'books/book_edit.html', {
         'book_form': book_form,
         'review_form': review_form
