@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Book, Review
-from .forms import BookForm
+from .forms import BookForm, ReviewForm
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -19,9 +19,11 @@ class DetailView(generic.DetailView):
     template_name = 'books/detail.html'
 
 def new_book(request):
-    form = BookForm()
+    book_form = BookForm()
+    review_form = ReviewForm()
     return render(request, 'books/book_edit.html', {
-        'form': form
+        'book_form': book_form,
+        'review_form': review_form
     })
 
 def update(request, book_id, column):
