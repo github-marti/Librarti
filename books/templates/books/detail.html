@@ -24,7 +24,7 @@
     <!-- Synopsis Section -->
     <p>Synopsis:</p>
     {% if book.synopsis %}
-    <div id="current_synopsis">
+    <div>
         <div id="synopsis">{{ book.synopsis }}</div>
     </div>
     {% else %}
@@ -37,32 +37,12 @@
     <!-- Book Review Section -->
     <p>Review</p>
     {% if book.review %}
-    <div id="current_review">
+    <div>
         <span id="review_stars">{{ book.review.stars }}</span>
-        <button class="toggle" section="review">Edit Review</button>
-    </div>
-    <div id="edit_review" style="display:none">
-        <form action="{% url 'books:update' book.id 'review' %}" method="post">
-            {% csrf_token %}
-            {% for stars, review in book.review.REVIEW_CHOICES %}
-            <input type="radio" name="review" value="{{ stars }}">
-            <label>{{ stars }}</label>
-            {% endfor %}
-            <input type="submit" value="Save">
-            <button class="toggle" section="review">Cancel</button>
-        </form>
     </div>
     {% else %}
     <div>
         <p>This book doesn't have a review yet.</p>
-        <form action="{% url 'books:update' book.id 'review' %}" method="post">
-            {% csrf_token %}
-            {% for stars, review in book.review.REVIEW_CHOICES %}
-            <input type="radio" name="review" value="{{ stars }}">
-            <label>{{ stars }}</label>
-            {% endfor %}
-            <input type="submit" value="Save">
-        </form>
     </div>
     {% endif %}
     <a href="{% url 'books:index' %}">Back</a>
