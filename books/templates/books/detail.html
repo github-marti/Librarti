@@ -54,19 +54,20 @@
     {% if book.review %}
     <div id="current_review">
         <span id="review_stars">{{ book.review }}</span>
-        <button class="toggle" section="review">Edit Review</button> 
+        <button class="toggle" section="review">Edit Review</button>
     </div>
     <div id="edit_review" style="display:none">
-        <form action="{% url 'books:update_review' book.id %}" method="post">
+        <form action="{% url 'books:update_synopsis' book.id %}" method="post">
             {% csrf_token %}
-            {% for choice in book.REVIEW_CHOICES %}
-            <input type="radio" name="review" value="{{ choice[0] }}">
-            <label>{{ choice[1} }} : {{ choice[0] }}</label>
+            {% for stars, review in book.REVIEW_CHOICES %}
+            <input type="radio" name="review" value="{{ choice }}">
+            <label>{{ stars }}</label>
+            {% endfor %}
             <input type="submit" value="Save">
             <button class="toggle" section="review">Cancel</button>
         </form>
     </div>
-    {% else %} 
+    {% else %}
     <div>
         <p>This book doesn't have a review yet.</p>
         <button class="toggle" section="review">Add Review</button>
@@ -78,8 +79,7 @@
 
 <script>
 
-
-    // shows synopsis edit textarea when clicked
+    // toggles current/edit divs for each section so users can update saved information
     $('.toggle').on('click', function (e) {
         e.preventDefault();
         let section = $(this).attr('section');
