@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     {% load static %}
@@ -22,7 +24,7 @@
     {% if book.synopsis %}
     <div id="current_synopsis">
         <div id="synopsis">{{ book.synopsis }}</div>
-        <button id="edit">Edit Synopsis</button>
+        <button class="toggle" section="synopsis">Edit Synopsis</button>
     </div>
     <div id="edit_synopsis" style="display:none">
         <form action="{% url 'books:update_synopsis' book.id %}" method="post">
@@ -30,7 +32,7 @@
             <textarea id="new_synopsis" name="synopsis">{{ book.synopsis }}</textarea>
             <br />
             <input type="submit" value="Save">
-            <button id="cancel">Cancel</button>
+            <button class="toggle" section="synopsis">Cancel</button>
         </form>
     </div>
     {% else %}
@@ -51,12 +53,23 @@
     <p>Review</p>
     {% if book.review %}
     <div id="current_review">
-        <span id="review_stars"></span>
-        {{ book.review }}
+        <span id="review_stars">{{ book.review }}</span>
+        <button class="toggle" section="review">Edit Review</button> 
     </div>
-    {% else %}
+    <div id="edit_review" style="display:none">
+        <form action="{% url 'books:update_review' book.id %}" method="post">
+            {% csrf_token %}
+            {% for choice in book.REVIEW_CHOICES %}
+            <input type="radio" name="review" value="{{ choice[0] }}">
+            <label>{{ choice[1} }} : {{ choice[0] }}</label>
+            <input type="submit" value="Save">
+            <button class="toggle" section="review">Cancel</button>
+        </form>
+    </div>
+    {% else %} 
     <div>
         <p>This book doesn't have a review yet.</p>
+        <button class="toggle" section="review">Add Review</button>
     </div>
     {% endif %}
     <!-- End Book Review Section -->
@@ -64,23 +77,14 @@
 </body>
 
 <script>
-    const currentSynopsis = document.getElementById('current_synopsis');
-    const editSynopsis = document.getElementById('edit_synopsis');
-    const synopsisText = document.getElementById('synopsis').textContent;
-    const editButton = document.getElementById('edit');
-    const cancelButton = document.getElementById('cancel');
+
 
     // shows synopsis edit textarea when clicked
-    editButton.addEventListener('click', function () {
-        currentSynopsis.setAttribute('style', 'display:none');
-        editSynopsis.setAttribute('style', 'display:block');
-    });
-
-    // removes textarea and returns to original synopsis (no changes made)
-    cancelButton.addEventListener('click', function (e) {
+    $('.toggle').on('click', function (e) {
         e.preventDefault();
-        currentSynopsis.setAttribute('style', 'display:block');
-        editSynopsis.setAttribute('style', 'display:none');
+        let section = $(this).attr('section');
+        $(`#current_${section}`).toggle();
+        $(`#edit_${section}`).toggle();
     });
 
 </script>
