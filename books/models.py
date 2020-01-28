@@ -5,7 +5,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    synopsis = models.CharField(max_length=10000, blank=True, null=True)
+    synopsis = models.TextField(blank=True, null=True)
     read_date = models.CharField(max_length=255, blank=True, null=True)
     add_date = models.DateTimeField('date added')
 
@@ -33,7 +33,7 @@ class Review(models.Model):
         primary_key=True,
     )
     stars = models.CharField(max_length=255, choices=REVIEW_CHOICES, default=NO_STARS)
-    thoughts = models.CharField(max_length=10000, blank=True, null=True)
+    thoughts = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.stars
