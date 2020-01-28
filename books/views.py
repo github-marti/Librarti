@@ -47,7 +47,17 @@ def update_book(request, book_id):
             book = form.save()
             return redirect('books:detail', pk=book.pk)
     else:
-        return render(request, 'books/book_edit.html', {'book_form': form}) 
+        return render(request, 'books/book_edit.html', {'book_form': form})
+
+def update_review(request, book_id):
+    instance = get_object_or_404(Review, book=book_id)
+    form = ReviewForm(request.POST or None, instance=instance)
+    if request.method == 'POST':
+        if form.is_valid():
+            review = form.save()
+            return redirect('books:detail', pk=review.book.pk)
+    else:
+        return render(request, 'books/book_edit.html', {'review_form': form})
 
 def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
