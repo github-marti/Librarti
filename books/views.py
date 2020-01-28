@@ -42,31 +42,15 @@ def new_book(request):
 def update(request, book_id, column):
     book = get_object_or_404(Book, pk=book_id)
     review = get_object_or_404(Review, book=book_id)
-    print(review.stars)
-
-    # for synopsis updates
-    if column == 'synopsis':
-        try:
-            book.synopsis = request.POST[column]
-        except (KeyError):
-            return render(request, 'books/detail.html', {
-                'book': book,
-                'error_message': "Synopsis not successfully saved."
-            })
-        else:
-            book.save()
-            return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
     
     # for review updates
-    elif column == 'review':
-        try:
-            review.stars = request.POST[column]
-            print(request.POST[column])
-        except (KeyError):
-            return render(request, 'books/detail.html', {
-                'book': book,
-                'error_message': "Review not successfully saved."
-            })
-        else:
-            review.save()
-            return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
+    try:
+        review.stars = request.POST[column]
+    except (KeyError):
+        return render(request, 'books/detail.html', {
+            'book': book,
+            'error_message': "Review not successfully saved."
+        })
+    else:
+        review.save()
+        return HttpResponseRedirect(reverse('books:detail', args=(book.id,)))
