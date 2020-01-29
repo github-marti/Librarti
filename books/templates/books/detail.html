@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'books/style.css' %}">
@@ -18,48 +19,50 @@
         {% if error_message %}
         <p class="error">{{ error_message }}</p>
         {% endif %}
+        <div class="book-header p-3">
+            <h3 class="baskerville font-weight-bold">{{ book.title }}</h3>
+            <h4 class="baskerville font-italic">by {{ book.author }}</h4>
+        </div>
 
-        <h3>{{ book.title }}</h3>
-        <h4>by {{ book.author }}</h4>
+        {% if book.image %}
+        <img class="book-img m-3" src="{{ book.image }}">
+        {% endif %}
 
         <!-- Synopsis Section -->
-        <p class="subtitle">Synopsis</p>
-        {% if book.synopsis %}
-        <div>
-            <div id="synopsis">{{ book.synopsis }}</div>
+        <div class="synopsis p-3">
+            <p class="subtitle baskerville">Synopsis</p>
+            {% if book.synopsis %}
+            <div>
+                <div>{{ book.synopsis }}</div>
+            </div>
         </div>
         {% else %}
-        <div>
-            <p>This book doesn't have a synopsis yet.</p>
+        <div class="synopsis p-3">
+            <div>
+                <p class="baskerville">This book doesn't have a synopsis yet.</p>
+            </div>
         </div>
         {% endif %}
         <!-- End Book Synopsis Section -->
 
         <!-- Book Review Section -->
-        <p class="subtitle">Review</p>
-        {% if book.review.stars %}
-        <div>
-            <span>{{ book.review.stars }}</span>
+        <div class="review p-3 my-3">
+            <p class="subtitle baskerville">Review</p>
+            <div class="mb-3">
+                <span>{{ book.review.stars }}</span>
+            </div>
+            <p class="subtitle baskerville">Thoughts</p>
+            {% if book.review.thoughts %}
+            <div>
+                <span>{{ book.review.thoughts }}</span>
+            </div>
+            {% else %}
+            <div>
+                <p class="baskerville font-italic">No thoughts have been added yet.</p>
+            </div>
+            {% endif %}
         </div>
-        {% else %}
-        <div>
-            <p>This book doesn't have a review yet.</p>
-        </div>
-        {% endif %}
         <!-- End Book Review Section -->
-
-        <!-- Thoughts Section -->
-        <p>Thoughts</p>
-        {% if book.review.thoughts %}
-        <div>
-            <span>{{ book.review.thoughts }}</span>
-        </div>
-        {% else %}
-        <div>
-            <p>No thoughts have been added yet.</p>
-        </div>
-        {% endif %}
-        <!-- End Thoughts Section -->
 
         <br />
         <a href="{% url 'books:update_book' book.id %}">Update Book</a>

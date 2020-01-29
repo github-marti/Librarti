@@ -36,5 +36,16 @@ header a:hover {
 .subtitle {
     font-weight: bold;
     font-size: 1.1em;
-    margin: 15px 0 5px 0;
+    margin-bottom: 5px;
+}
+
+.book-img {
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #eee;
+}
+
+.review {
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
