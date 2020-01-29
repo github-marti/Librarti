@@ -26,6 +26,10 @@
     {% else %}
     <p>What's this? No books?!</p>
     {% endif %}
-    <a href="{% url 'books:new_book' %}">Add a new book</a>
+    <div class="my-4 text-center">
+        <a href="{% url 'books:new_book' %}">
+            <button type="button" class="btn btn-secondary">Add a new book</button>
+        </a>
+    </div>
 </div>
 {% endblock %}
