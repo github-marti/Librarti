@@ -36,21 +36,36 @@
 
     <!-- Book Review Section -->
     <p>Review</p>
-    {% if book.review %}
+    {% if book.review.stars %}
     <div>
-        <span id="review_stars">{{ book.review.stars }}</span>
+        <span>{{ book.review.stars }}</span>
     </div>
     {% else %}
     <div>
         <p>This book doesn't have a review yet.</p>
     </div>
     {% endif %}
-    <a href="{% url 'books:index' %}">Back</a>
     <!-- End Book Review Section -->
+
+    <!-- Thoughts Section -->
+    <p>Thoughts</p>
+    {% if book.review.thoughts %}
+    <div>
+        <span>{{ book.review.thoughts }}</span>
+    </div>
+    {% else %}
+    <div>
+        <p>No thoughts have been added yet.</p>
+    </div>
+    {% endif %}
+    <!-- End Thoughts Section -->
+
     <br />
     <a href="{% url 'books:update_book' book.id %}">Update Book</a>
     <br />
     <a href="{% url 'books:update_review' book.id %}">Update Review</a>
+    <br />
+    <a href="{% url 'books:index' %}">Back to Home</a>
 </body>
 
 </html>
