@@ -16,11 +16,12 @@ header a:hover {
 }
 
 .latest-wrapper {
-    width: 75%;
+    width: 80%;
 }
 
 .book-wrapper {
-    height: 200px;
+    height: 35vw;
+    max-width: 30vw;
 }
 
 .book {
