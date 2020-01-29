@@ -5,6 +5,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, blank=True, null=True)
     synopsis = models.TextField(blank=True, null=True)
     read_date = models.CharField(max_length=255, blank=True, null=True)
     add_date = models.DateTimeField('date added')

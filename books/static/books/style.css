@@ -1,3 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.baskerville {
+    font-family: 'Libre Baskerville', serif;
+}
+
+header a {
+    color: black;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 .latest-wrapper {
     width: 75%;
 }
@@ -14,4 +31,10 @@
 .book-title {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.subtitle {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 15px 0 5px 0;
 }
