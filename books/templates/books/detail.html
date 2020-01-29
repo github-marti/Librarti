@@ -32,17 +32,11 @@
         <div class="synopsis p-3">
             <p class="subtitle">Synopsis</p>
             {% if book.synopsis %}
-            <div>
-                <div>{{ book.synopsis }}</div>
-            </div>
+            <span>{{ book.synopsis }}</span>
+            {% else %}
+            <span class="font-italic">This book doesn't have a synopsis yet.</span>
+            {% endif %}
         </div>
-        {% else %}
-        <div class="synopsis p-3">
-            <div>
-                <p>This book doesn't have a synopsis yet.</p>
-            </div>
-        </div>
-        {% endif %}
         <!-- End Book Synopsis Section -->
 
         <!-- Book Review Section -->
@@ -50,32 +44,32 @@
             <p class="subtitle baskerville">Review</p>
             <div class="mb-3">
                 <span>{{ book.review.stars }}</span>
-            </div>
-            <p class="subtitle baskerville">Thoughts</p>
-            {% if book.review.thoughts %}
-            <div>
-                <p>{{ book.review.thoughts }}</span>
-            </div>
-            {% else %}
-            <div>
-                <p class="baskerville font-italic">No thoughts have been added yet.</p>
-            </div>
-            {% endif %}
-            <a href="{% url 'books:update_review' book.id %}">
-                <button class="btn btn-outline-info">Update Review</button>
-            </a>
         </div>
-        <!-- End Book Review Section -->
+        <p class="subtitle baskerville">Thoughts</p>
+        {% if book.review.thoughts %}
+        <div>
+            <p>{{ book.review.thoughts }}</span>
+        </div>
+        {% else %}
+        <div>
+            <p class="font-italic">No thoughts have been added yet.</p>
+        </div>
+        {% endif %}
+        <a href="{% url 'books:update_review' book.id %}">
+            <button class="btn btn-outline-info">Update Review</button>
+        </a>
+    </div>
+    <!-- End Book Review Section -->
 
-        <div class="edit-btns p-3 d-flex justify-content-between">
-            <a href="{% url 'books:update_book' book.id %}">
-                <button class="btn btn-info">Update Book</button>
-            </a>
-            <a href="{% url 'books:delete_book' book.id %}">
-                <button class="btn btn-danger">Delete Book</button>
-            </a>
-        </div>
-        <a class="p-3" href="{% url 'books:index' %}">Back to Home</a>
+    <div class="edit-btns p-3 d-flex justify-content-between">
+        <a href="{% url 'books:update_book' book.id %}">
+            <button class="btn btn-info">Update Book</button>
+        </a>
+        <a href="{% url 'books:delete_book' book.id %}">
+            <button class="btn btn-danger">Delete Book</button>
+        </a>
+    </div>
+    <a class="p-3" href="{% url 'books:index' %}">Back to Home</a>
     </div>
 </body>
 
