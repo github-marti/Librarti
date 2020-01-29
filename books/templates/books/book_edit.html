@@ -7,4 +7,11 @@
         {{ review_form.as_p }}
         <button type="submit">Save</button>
     </form>
+    <div>
+        {% if book_id %}
+        <a href="{% url 'books:detail' book_id %}">Cancel</a>
+        {% else %}
+        <a href="{% url 'books:index' %}">Cancel</a>
+        {% endif %}
+    </div>
 {% endblock %}
