@@ -66,6 +66,9 @@
         <br />
         <a href="{% url 'books:update_review' book.id %}">Update Review</a>
         <br />
+        <a href="{% url 'books:delete_book' book.id %}">
+            <button class="btn btn-danger">Delete Book</button>
+        </a>
         <a href="{% url 'books:index' %}">Back to Home</a>
     </div>
 </body>

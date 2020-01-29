@@ -58,3 +58,12 @@ def update_review(request, book_id):
             return redirect('books:detail', pk=review.book.pk)
     else:
         return render(request, 'books/book_edit.html', {'review_form': form, 'book_id': book_id})
+
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    try:
+        book.delete()
+    except:
+        print("Book not deleted successfully")
+    else:
+        return redirect('books:index')
