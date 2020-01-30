@@ -1,17 +1,43 @@
-{% extends 'books/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<h2>New book</h2>
-<form method="POST">{% csrf_token %}
-    {{ book_form.as_p }}
-    {{ review_form.as_p }}
-    <button type="submit">Save</button>
-</form>
-<div>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <script src="https://kit.fontawesome.com/4a3eda80d3.js" crossorigin="anonymous"></script>
     {% if book_id %}
-    <a href="{% url 'books:detail' book_id %}">Cancel</a>
+    <title>Update Book</title>
     {% else %}
-    <a href="{% url 'books:index' %}">Cancel</a>
+    <title>Add New Book</title>
     {% endif %}
-</div>
-{% endblock %}
+</head>
+
+<body>
+    <div class="p-3 edit-wrapper">
+        {% if book_id %}
+        <h2>Update Book</h2>
+        {% else %}
+        <h2>Add New Book</h2>
+        {% endif %}
+        <form method="POST">{% csrf_token %}
+            {{ book_form.as_p }}
+            {{ review_form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <div>
+            {% if book_id %}
+            <a href="{% url 'books:detail' book_id %}">Cancel</a>
+            {% else %}
+            <a href="{% url 'books:index' %}">Cancel</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
