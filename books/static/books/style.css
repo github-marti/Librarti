@@ -19,6 +19,10 @@ header a:hover {
     width: 80%;
 }
 
+.search-wrapper {
+    width: 80%;
+}
+
 .book-wrapper {
     height: 30vw;
 }
