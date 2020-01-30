@@ -21,20 +21,24 @@
 <body>
     <div class="p-3 edit-wrapper">
         {% if book_id %}
-        <h2>Update Book</h2>
+        <h3 class="py-2">Update Book</h3>
         {% else %}
-        <h2>Add New Book</h2>
+        <h3 class="py-2">Add New Book</h3>
         {% endif %}
         <form method="POST">{% csrf_token %}
             {{ book_form.as_p }}
             {{ review_form.as_p }}
-            <button type="submit">Save</button>
+            <button class="btn btn-info" type="submit">Save</button>
         </form>
-        <div>
+        <div class="py-3">
             {% if book_id %}
-            <a href="{% url 'books:detail' book_id %}">Cancel</a>
+            <a href="{% url 'books:detail' book_id %}">
+                <button class="btn btn-outline-danger">Cancel</button>
+            </a>
             {% else %}
-            <a href="{% url 'books:index' %}">Cancel</a>
+            <a href="{% url 'books:index' %}">
+                <button class="btn btn-outline-danger">Cancel</button>
+            </a>
             {% endif %}
         </div>
     </div>
