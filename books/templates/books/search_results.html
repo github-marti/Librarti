@@ -3,7 +3,8 @@
 <ul>
     {% for book in search_results %}
     <li>
-        {{ book.title }}
+        <p>{{ book.title }}</p>
+        <p>{{ book.review.stars }}</p>
     </li>
     {% endfor %}
 </ul>
