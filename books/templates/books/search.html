@@ -1,16 +1,16 @@
-<div class="search-wrapper container my-4">
-    <h4 class="my-5">Search for Books</h4>
-    <form method="GET">
+<div class="search-wrapper container my-4 p-4">
+    <h4>Search for Books</h4>
+    <form action="{% url 'books:results' %}" method="GET">
         <label for="search-title">Search by Title:</label>
-        <input type="text" id="search-title" class="m-3">
+        <input name="title" type="text" id="search-title" class="m-3">
         <input type="submit" value="Search">
     </form>
-    <form method="GET">
+    <form action="{% url 'books:results' %}" method="GET">
         <label for="search-author">Search by Author:</label>
-        <input type="text" id="search-author" class="m-3">
+        <input name="author" type="text" id="search-author" class="m-3">
         <input type="submit" value="Search">
     </form>
-    <form method="GET">
+    <form action="{% url 'books:results' %}" method="GET">
         {{ star_form }}
     </form>
 </div>

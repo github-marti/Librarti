@@ -53,3 +53,8 @@ header a:hover {
     border: 1px solid #ccc;
     border-radius: 3px;
 }
+
+.search-wrapper {
+    background: rgb(193, 222, 255);
+    border-radius: 5px;
+}

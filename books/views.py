@@ -24,6 +24,19 @@ class DetailView(generic.DetailView):
     model = Book
     template_name = 'books/detail.html'
 
+class SearchResultsView(generic.ListView):
+    model = Book
+    template_name = 'books/search_results.html'
+    context_object_name = 'search_results'
+
+    def get_queryset(self):
+        if 'title' in self.request.GET:
+            query = self.request.GET.get('title')
+            return Book.objects.filter(title__icontains=query) 
+        else:
+            query = self.request.GET.get('author')
+            return Book.objects.filter(author__icontains=query)
+
 def new_book(request):
     if request.method == 'POST':
         book_form = BookForm(request.POST)

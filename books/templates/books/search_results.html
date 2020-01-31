@@ -1,0 +1,9 @@
+<h2>Search Results</h2>
+
+<ul>
+    {% for book in search_results %}
+    <li>
+        {{ book.title }}
+    </li>
+    {% endfor %}
+</ul>
