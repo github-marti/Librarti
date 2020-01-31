@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from .models import Book, Review
-from .forms import BookForm, ReviewForm
+from .forms import BookForm, ReviewForm, StarForm
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -14,6 +14,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five books according to add date"""
         return Book.objects.order_by('-add_date')[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['star_form'] = StarForm()
+        return context
 
 class DetailView(generic.DetailView):
     model = Book

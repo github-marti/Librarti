@@ -1,4 +1,16 @@
 <div class="search-wrapper container my-4">
-    <h4 class="mx-2 my-5">Search for Books</h4>
+    <h4 class="my-5">Search for Books</h4>
+    <form method="GET">
+        <label for="search-title">Search by Title:</label>
+        <input type="text" id="search-title" class="m-3">
+        <input type="submit" value="Search">
+    </form>
+    <form method="GET">
+        <label for="search-author">Search by Author:</label>
+        <input type="text" id="search-author" class="m-3">
+        <input type="submit" value="Search">
+    </form>
+    <form method="GET">
+        {{ star_form }}
+    </form>
 </div>
-

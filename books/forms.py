@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import Form, ModelForm, TextInput, Textarea, Select
 from .models import Book, Review
 
 class BookForm(ModelForm):
@@ -20,4 +20,16 @@ class ReviewForm(ModelForm):
         fields = ('stars', 'thoughts')
         widgets = {
             'thoughts': Textarea(attrs={'class': 'form-control'})
+        }
+
+class StarForm(ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ('stars',)
+        labels = {
+            'stars': 'Review',
+        }
+        widgets = {
+            'stars': Select(attrs={'class': 'm-3'})
         }
