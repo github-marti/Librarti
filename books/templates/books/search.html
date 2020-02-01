@@ -1,12 +1,12 @@
 <div class="search-wrapper container my-4 p-4">
-    <h4>Search for Books</h4>
+    <h5>Search for Books</h5>
     <form action="{% url 'books:results' %}" method="GET" class="my-3">
-        <label for="search-title">Search by Title:</label>
+        <label for="search-title">by Title:</label>
         <input name="title" type="text" id="search-title" class="search-form">
         <input type="submit" value="Search">
     </form>
     <form action="{% url 'books:results' %}" method="GET" class="my-4">
-        <label for="search-author">Search by Author:</label>
+        <label for="search-author">by Author:</label>
         <input name="author" type="text" id="search-author" class="search-form">
         <input type="submit" value="Search">
     </form>

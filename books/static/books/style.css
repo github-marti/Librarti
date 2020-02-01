@@ -11,6 +11,11 @@ header {
     background: #6c757d;
 }
 
+.btn-outline-dark {
+    color: white;
+    border-color: white;
+}
+
 .latest-wrapper {
     width: 80%;
 }

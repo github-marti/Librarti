@@ -18,16 +18,13 @@
 <body>
     <header class="mb-5 p-3 text-center">
         <h1 class="font-weight-bold mt-2">the Librarti</h1>
-        <p class="font-italic">(Keep your voice down)</p>
+        <span class="font-italic">Browse by... </span>
+        <a href="{% url 'books:order_by' 'title' %}"><button class="btn btn-outline-dark">Title</button></a>
+        <a href="{% url 'books:order_by' 'author' %}"><button class="btn btn-outline-dark">Author</button></a>
+        <a href="{% url 'books:order_by' 'stars' %}"><button class="btn btn-outline-dark">Stars</button></a>
+        <a href="{% url 'books:order_by' 'add_date' %}"><button class="btn btn-outline-dark">Add Date</button></a>
     </header>
     {% block recent %}{% endblock %}
-    <div class="browse-wrapper my-4 p-4 container">
-        <h4>Browse the Collection</h4>
-        <a href="{% url 'books:order_by' 'title' %}"><button class="btn btn-outline-dark">by Title</button></a>
-        <a href="{% url 'books:order_by' 'author' %}"><button class="btn btn-outline-dark">by Author</button></a>
-        <a href="{% url 'books:order_by' 'stars' %}"><button class="btn btn-outline-dark">by Stars</button></a>
-        <a href="{% url 'books:order_by' 'add_date' %}"><button class="btn btn-outline-dark">by Add Date</button></a>
-    </div>
     {% include 'books/search.html' %}
 </body>
 

@@ -28,7 +28,7 @@ class StarForm(ModelForm):
         model = Review
         fields = ('stars',)
         labels = {
-            'stars': 'Search by Review',
+            'stars': 'by Review',
         }
         widgets = {
             'stars': Select(attrs={'class': 'search-form'})
