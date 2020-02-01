@@ -58,3 +58,8 @@ header a:hover {
     background: rgb(193, 222, 255);
     border-radius: 5px;
 }
+
+.result-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
