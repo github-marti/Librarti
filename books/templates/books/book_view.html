@@ -40,6 +40,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Stars</th>
+            <th>Date Added</th>
         </tr>
         {% if books_list %}
         {% for book in books_list.all_books %}
@@ -47,6 +48,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.review.stars }}</td>
+            <td>{{ book.add_date|date:"n-j-Y" }}</td>
         </tr>
         {% endfor %}
         {% endif %}
