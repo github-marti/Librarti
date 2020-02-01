@@ -27,7 +27,7 @@
             {% if ordered_books %}
             {% for book in ordered_books %}
             <tr>
-                <td>{{ book.title }}</td>
+                <td><a href="{% url 'books:detail' book.id %}">{{ book.title }}</a></td>
                 <td>{{ book.author }}</td>
                 <td>{{ book.review.stars }}</td>
                 <td>{{ book.add_date|date:"n-j-Y" }}</td>
