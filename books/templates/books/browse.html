@@ -19,10 +19,10 @@
         <h4 class="px-2">Browse the Librarti</h4>
         <table class="book-table my-4">
             <tr class="px-2">
-                <th>Title</th>
-                <th>Author</th>
-                <th>Stars</th>
-                <th>Date Added</th>
+                <th><a href="{% url 'books:order_by' 'title' %}">Title</a></th>
+                <th><a href="{% url 'books:order_by' 'author' %}">Author</a></th>
+                <th><a href="{% url 'books:order_by' 'stars' %}">Stars</a></th>
+                <th><a href="{% url 'books:order_by' 'add_date' %}">Add Date</a></th>
             </tr>
             {% if ordered_books %}
             {% for book in ordered_books %}
