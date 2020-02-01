@@ -15,10 +15,10 @@
 </head>
 
 <body>
-    <div class="browse-wrapper container my-4 p-4">
-        <h4>Browse the Librarti</h4>
-        <table class="book-table">
-            <tr>
+    <div class="mt-5">
+        <h4 class="px-2">Browse the Librarti</h4>
+        <table class="book-table my-4">
+            <tr class="px-2">
                 <th>Title</th>
                 <th>Author</th>
                 <th>Stars</th>
@@ -35,6 +35,7 @@
             {% endfor %}
             {% endif %}
         </table>
+        <a class="px-2" href="{% url 'books:index' %}">Return to home</a>
     </div>
 
 </body>

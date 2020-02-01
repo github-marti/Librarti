@@ -66,16 +66,17 @@ header {
     margin: 0 15px;
 }
 
-.browse-wrapper {
-    width: 80%;
-}
-
 .book-table {
     width: 100%;
 }
 
-.book-table td {
+.book-table td, th {
     padding: 10px;
+}
+
+.book-table th {
+    background: #132b7a;
+    color: white;
 }
 
 .book-table tr:nth-child(even) {
