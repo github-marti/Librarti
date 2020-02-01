@@ -1,11 +1,11 @@
 {% extends 'books/base.html' %}
 
-{% block content %}
+{% block recent %}
 <div class="latest-wrapper container">
     <h4 class="mx-2 my-4">Recently Added</h4>
     <div class="multiple-items">
         {% if books_list %}
-        {% for book in books_list.most_recent %}
+        {% for book in books_list %}
         <div class="book-wrapper mx-2">
             {% if book.image %}
             <a href="{% url 'books:detail' book.id %}">
@@ -32,26 +32,5 @@
         </a>
     </div>
 </div>
-{% include 'books/search.html' %}
-<div class="browse-wrapper container my-4 p-4">
-    <h4>Browse the Librarti</h4>
-    <table class="book-table">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Stars</th>
-            <th>Date Added</th>
-        </tr>
-        {% if books_list %}
-        {% for book in books_list.all_books %}
-        <tr>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.review.stars }}</td>
-            <td>{{ book.add_date|date:"n-j-Y" }}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </table>
-</div>
+
 {% endblock %}

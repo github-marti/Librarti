@@ -13,15 +13,20 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five books according to add date"""
-        queryset = {'all_books': Book.objects.all(),
-                    'most_recent': Book.objects.order_by('-add_date')[:5]
-                    }
-        return queryset
+        return Book.objects.order_by('-add_date')[:5]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['star_form'] = StarForm()
         return context
+
+class BrowseView(generic.ListView):
+    template_name = 'books/browse.html'
+    context_object_name = 'ordered_books'
+
+    def get_queryset(self):
+        order_by = self.kwargs['order_by']
+        return Book.objects.order_by(order_by)
 
 class DetailView(generic.DetailView):
     model = Book

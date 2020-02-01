@@ -9,5 +9,6 @@ urlpatterns = [
     path('book/<int:book_id>/delete', views.delete_book, name='delete_book'),
     path('book/<int:book_id>/edit_book', views.update_book, name='update_book'),
     path('book/<int:book_id>/edit_review', views.update_review, name='update_review'),
-    path('book/search/', views.SearchResultsView.as_view(), name='results')
+    path('books/search/', views.SearchResultsView.as_view(), name='results'),
+    path('books/browse/by_<str:order_by>', views.BrowseView.as_view(), name='order_by')
 ]

@@ -20,7 +20,15 @@
         <h1><a class="font-bold" href="{% url 'books:index' %}">the Librarti</a></h1>
         <p class="font-italic">(Keep your voice down)</p>
     </header>
-    {% block content %}{% endblock %}
+    {% block recent %}{% endblock %}
+    <div class="browse-wrapper my-4 p-4 container">
+        <h4>Browse the Collection</h4>
+        <a href="{% url 'books:order_by' 'title' %}">by Title</a>
+        <a href="{% url 'books:order_by' 'author' %}">by Author</a>
+        <a href="{% url 'books:order_by' 'stars' %}">by Stars</a>
+        <a href="{% url 'books:order_by' 'add_date' %}">by Date Added</a>
+    </div>
+    {% include 'books/search.html' %}
 </body>
 
 {% load static %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <title>Welcome to the Librarti</title>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="browse-wrapper container my-4 p-4">
+        <h4>Browse the Librarti</h4>
+        <table class="book-table">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Stars</th>
+                <th>Date Added</th>
+            </tr>
+            {% if ordered_books %}
+            {% for book in ordered_books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.review.stars }}</td>
+                <td>{{ book.add_date|date:"n-j-Y" }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+
+</body>
+
+</html>
