@@ -31,5 +31,5 @@ class StarForm(ModelForm):
             'stars': 'Search by Review',
         }
         widgets = {
-            'stars': Select(attrs={'class': 'm-3'})
+            'stars': Select(attrs={'class': 'search-form'})
         }
