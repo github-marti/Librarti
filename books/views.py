@@ -26,7 +26,10 @@ class BrowseView(generic.ListView):
 
     def get_queryset(self):
         order_by = self.kwargs['order_by']
-        return Book.objects.order_by(order_by)
+        if order_by == 'stars':
+            return Book.objects.order_by('review__stars')
+        else:
+            return Book.objects.order_by(order_by)
 
 class DetailView(generic.DetailView):
     model = Book

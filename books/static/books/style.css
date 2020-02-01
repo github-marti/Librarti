@@ -6,13 +6,9 @@ body {
     font-family: 'Libre Baskerville', serif;
 }
 
-header a {
-    color: black;
-}
-
-header a:hover {
-    text-decoration: none;
-    color: black;
+header {
+    color: white;
+    background: #6c757d;
 }
 
 .latest-wrapper {
