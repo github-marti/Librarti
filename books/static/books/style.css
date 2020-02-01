@@ -19,10 +19,6 @@ header a:hover {
     width: 80%;
 }
 
-.search-wrapper {
-    width: 80%;
-}
-
 .book-wrapper {
     height: 30vw;
 }
@@ -55,6 +51,7 @@ header a:hover {
 }
 
 .search-wrapper {
+    width: 80%;
     background: rgb(193, 222, 255);
     border-radius: 5px;
 }
@@ -66,6 +63,14 @@ header a:hover {
 
 .search-form {
     margin: 0 15px;
+}
+
+.browse-wrapper {
+    width: 80%;
+}
+
+.book-table {
+    width: 100%;
 }
 
 @media screen and (max-width: 720px) {

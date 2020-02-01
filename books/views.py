@@ -9,11 +9,14 @@ from .forms import BookForm, ReviewForm, StarForm
 # Create your views here.
 class IndexView(generic.ListView):
     template_name = 'books/book_view.html'
-    context_object_name = 'latest_books_list'
+    context_object_name = 'books_list'
 
     def get_queryset(self):
         """Return the last five books according to add date"""
-        return Book.objects.order_by('-add_date')[:5]
+        queryset = {'all_books': Book.objects.all(),
+                    'most_recent': Book.objects.order_by('-add_date')[:5]
+                    }
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -4,8 +4,8 @@
 <div class="latest-wrapper container">
     <h4 class="mx-2 my-4">Recently Added</h4>
     <div class="multiple-items">
-        {% if latest_books_list %}
-        {% for book in latest_books_list %}
+        {% if books_list %}
+        {% for book in books_list.most_recent %}
         <div class="book-wrapper mx-2">
             {% if book.image %}
             <a href="{% url 'books:detail' book.id %}">
