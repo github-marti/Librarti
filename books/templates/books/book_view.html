@@ -1,6 +1,6 @@
 {% extends 'books/base.html' %}
 
-{% block recent %}
+{% block content %}
 <div class="latest-wrapper container">
     <h4 class="mx-2 my-4">Recently Added</h4>
     <div class="multiple-items">
@@ -32,10 +32,24 @@
         </a>
     </div>
 </div>
-
-{% load static %}
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script type="text/javascript" src="{% static 'books/slick.js' %}"></script>
+{% include 'books/search.html' %}
+<div class="browse-wrapper container my-4 p-4">
+    <h4>Browse the Librarti</h4>
+    <table class="book-table">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Stars</th>
+        </tr>
+        {% if books_list %}
+        {% for book in books_list.all_books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.review.stars }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+</div>
 {% endblock %}
