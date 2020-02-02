@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Libre Baskerville', serif;
+}
+
+header {
+    color: white;
+    background: #6c757d;
+}
+
+.btn-outline-dark {
+    color: white;
+    border-color: white;
+}
+
+.latest-wrapper {
+    width: 80%;
+}
+
+.book-wrapper {
+    height: 30vw;
+}
+
+.book {
+    height: 100%;
+    width: 100%;
+}
+
+.book-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.book-img {
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #eee;
+}
+
+.review {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.search-wrapper {
+    width: 80%;
+    background: rgb(193, 222, 255);
+    border-radius: 5px;
+}
+
+.result-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-form {
+    margin: 0 15px;
+}
+
+.book-table {
+    width: 100%;
+}
+
+.book-table td, th {
+    padding: 10px;
+}
+
+.book-table th {
+    background: #132b7a;
+    color: white;
+}
+
+.book-table th a {
+    color: white;
+}
+
+.book-table th a:hover {
+    color: white;
+}
+
+.book-table td a {
+    color: black;
+}
+
+.book-table td a:hover {
+    color: black;
+}
+
+.book-table tr:nth-child(even) {
+    background-color: #ddd
+}
+
+@media screen and (max-width: 720px) {
+    .search-form {
+        width: 100%;
+        display: block;
+        margin: 0 0 15px 0;
+    }
+}
