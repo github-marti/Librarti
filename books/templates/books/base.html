@@ -19,13 +19,14 @@
     <header class="mb-5 p-3 text-center">
         <h1 class="font-weight-bold mt-2">the Library</h1>
         <span class="font-italic">Browse by... </span>
-        <a href="{% url 'books:order_by' 'title' %}"><button class="btn btn-outline-dark">Title</button></a>
-        <a href="{% url 'books:order_by' 'author' %}"><button class="btn btn-outline-dark">Author</button></a>
-        <a href="{% url 'books:order_by' 'stars' %}"><button class="btn btn-outline-dark">Stars</button></a>
-        <a href="{% url 'books:order_by' 'add_date' %}"><button class="btn btn-outline-dark">Add Date</button></a>
+        <a href="{% url 'books:order_by' 'title' %}"><button class="btn btn-sm btn-outline-dark">Title</button></a>
+        <a href="{% url 'books:order_by' 'author' %}"><button class="btn btn-sm btn-outline-dark">Author</button></a>
+        <a href="{% url 'books:order_by' 'stars' %}"><button class="btn btn-sm btn-outline-dark">Stars</button></a>
+        <a href="{% url 'books:order_by' 'add_date' %}"><button class="btn btn-sm btn-outline-dark">Add Date</button></a>
     </header>
     {% block recent %}{% endblock %}
     {% include 'books/search.html' %}
+    <a href="/accounts/logout" class="float-right m-3">Log Out</a>
 </body>
 
 {% load static %}

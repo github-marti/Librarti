@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -7,13 +8,13 @@ from .models import Book, Review
 from .forms import BookForm, ReviewForm, StarForm
 
 # Create your views here.
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'books/book_view.html'
     context_object_name = 'books_list'
 
     def get_queryset(self):
         """Return the last five books according to add date"""
-        return Book.objects.order_by('-add_date')[:5]
+        return Book.objects.filter(user__id=self.request.user.id).order_by('-add_date')[:5]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,7 +28,7 @@ class BrowseView(generic.ListView):
     def get_queryset(self):
         order_by = self.kwargs['order_by']
         if order_by == 'stars':
-            return Book.objects.order_by('review__stars')
+            return Book.objects.filter(user__id=self.request.user.id).order_by('review__stars')
         else:
             return Book.objects.order_by(order_by)
 
@@ -43,13 +44,13 @@ class SearchResultsView(generic.ListView):
     def get_queryset(self):
         if 'title' in self.request.GET:
             query = self.request.GET.get('title')
-            return Book.objects.filter(title__icontains=query) 
+            return Book.objects.filter(user__id=self.request.user.id, title__icontains=query) 
         elif 'author' in self.request.GET:
             query = self.request.GET.get('author')
-            return Book.objects.filter(author__icontains=query)
+            return Book.objects.filter(user__id=self.request.user.id, author__icontains=query)
         else:
             query = self.request.GET.get('stars')
-            return Book.objects.filter(review__stars=query)
+            return Book.objects.filter(user__id=self.request.user.id, review__stars=query)
 
 def new_book(request):
     if request.method == 'POST':
@@ -58,6 +59,7 @@ def new_book(request):
         if book_form.is_valid():
             book = book_form.save(commit=False)
             book.add_date = timezone.now()
+            book.user = request.user
             book.save()
             review = review_form.save(commit=False)
             review.book = book

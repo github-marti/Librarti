@@ -25,7 +25,7 @@ environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = env('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "crispy_forms",
+    'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,6 +73,20 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'librarti.wsgi.application'
+
+
+#Authentication
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+LOGIN_REDIRECT_URL = 'index'
+
+
+# Crispy forms
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 # Database
